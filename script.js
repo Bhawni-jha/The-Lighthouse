@@ -169,7 +169,28 @@ function filterMenuItems(filter = 'all', searchText = '') {
     const itemName      = item.querySelector('h3').textContent.toLowerCase();
     const category      = item.dataset.category;
     const matchesSearch = itemName.includes(searchText.toLowerCase());
-    const matchesFilter = filter === 'all' || category === filter;
+
+
+    const foodTag = item.querySelector(".food-tag");
+
+    const isVeg = foodTag.classList.contains("veg");
+    
+    const isNonVeg = foodTag.classList.contains("nonveg");
+
+    let matchesFilter = false;
+
+    if (filter === "all") {
+      matchesFilter = true;
+    } else if (
+      ["breakfast", "lunch", "dinner", "desserts", "drinks"].includes(filter)
+    ) {
+      matchesFilter = category === filter;
+    } else if (filter === "veg") {
+      matchesFilter = isVeg;
+    } else if (filter === "nonveg") {
+      matchesFilter = isNonVeg;
+    }
+
 
     if (matchesSearch && matchesFilter) {
       item.classList.remove('hidden-item');
