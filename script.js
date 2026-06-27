@@ -667,3 +667,4 @@ const styleForMobile = `
 const mobileStyle = document.createElement('style');
 mobileStyle.textContent = styleForMobile;
 document.head.appendChild(mobileStyle);
+
